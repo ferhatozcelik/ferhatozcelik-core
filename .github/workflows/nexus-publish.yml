@@ -25,12 +25,9 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: 'oracle'
       - name: Run chmod to make gradlew executable
-        run: |
-          chmod +x ./gradlew build
-          chmod +x ./gradlew
-      
+        run: chmod +x ./gradlew
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
