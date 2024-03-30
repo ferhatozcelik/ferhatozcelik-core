@@ -1,5 +1,9 @@
 name: Publish
 
+on:
+  push:
+    branches: [ "deploy" ]
+    
 jobs:
   publish:
     runs-on: ubuntu-latest
