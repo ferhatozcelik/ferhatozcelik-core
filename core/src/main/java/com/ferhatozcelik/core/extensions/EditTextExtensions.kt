@@ -1,7 +1,6 @@
-package com.ferhatozcelik.spincoater.common.extensions
+package com.ferhatozcelik.core.extensions
 
 import android.widget.EditText
-import com.ferhatozcelik.spincoater.R
 
 fun EditText.modifyText(numberText: String) {
     this.setText(numberText)
@@ -16,8 +15,6 @@ fun EditText.valuePlus(minValue: Int, maxValue: Int, increment: Int) {
         }
         this.setText(value.toString())
         this.setSelection(this.text.length)
-    } else {
-        context.toast(context.getString(R.string.please_enter_value))
     }
 
 }
@@ -30,7 +27,5 @@ fun EditText.valueMinus(minValue: Int, maxValue: Int, increment: Int) {
         }
         this.setText(value.toString())
         this.setSelection(this.text.length)
-    } else {
-        context.toast(context.getString(R.string.please_enter_value))
     }
 }

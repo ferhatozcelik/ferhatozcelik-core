@@ -1,4 +1,4 @@
-package com.ferhatozcelik.spincoater.common.extensions
+package com.ferhatozcelik.core.extensions
 
 import android.content.Intent
 import android.os.Build

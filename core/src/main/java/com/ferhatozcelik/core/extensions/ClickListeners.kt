@@ -1,4 +1,4 @@
-package com.ferhatozcelik.spincoater.common.extensions
+package com.ferhatozcelik.core.extensions
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,7 +8,6 @@ import android.os.SystemClock
 import android.view.MotionEvent
 import android.view.View
 import androidx.annotation.Size
-import com.ferhatozcelik.spincoater.firebase.analytics.Analytics
 
 class OnSingleClickListener(
     private val interval: Long = 1000, private val block: (View) -> Unit
@@ -25,7 +24,6 @@ class OnSingleClickListener(
 
 fun View.setOnClickListener(@Size(min = 1L, max = 40L) eventName: String, bundle: Bundle? = null, listener: View.OnClickListener) {
     setOnClickListener {
-        Analytics(context).sendEventAnalytics(eventName, "clicked")
         listener.onClick(it)
     }
 }
@@ -34,7 +32,6 @@ fun View.setOnSingleClickListener(
     @Size(min = 1L, max = 40L) eventName: String, bundle: Bundle? = null, listener: View.OnClickListener
 ) {
     setOnClickListener(OnSingleClickListener {
-        Analytics(context).sendEventAnalytics(eventName, "clicked")
         listener.onClick(it)
     })
 }
