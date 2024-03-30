@@ -15,8 +15,8 @@ object RemoteConfigManager {
     private fun setDefaults() {
         remoteConfigApi.setDefaults(
             mapOf(
-                RemoteConfigParam.FORCE_UPDATE.key to ConfigManager.DEFAULT_FORCE_UPDATE,
-                RemoteConfigParam.FORCE_UPDATE_VERSION.key to ConfigManager.DEFAULT_FORCE_UPDATE_VERSION
+                RemoteConfigParam.FORCE_UPDATE.key to UpdateManager.DEFAULT_FORCE_UPDATE,
+                RemoteConfigParam.FORCE_UPDATE_VERSION.key to UpdateManager.DEFAULT_FORCE_UPDATE_VERSION
             )
         )
 
@@ -24,10 +24,10 @@ object RemoteConfigManager {
 
     fun getIsForceUpdate(): Boolean =
         remoteConfigApi.getRemoteConfig<Boolean>(RemoteConfigParam.FORCE_UPDATE.key)
-            ?: ConfigManager.DEFAULT_FORCE_UPDATE
+            ?: UpdateManager.DEFAULT_FORCE_UPDATE
 
     fun getForceUpdateVersion(): String =
         remoteConfigApi.getRemoteConfig<String>(RemoteConfigParam.FORCE_UPDATE_VERSION.key)
-            ?: ConfigManager.DEFAULT_FORCE_UPDATE_VERSION
+            ?: UpdateManager.DEFAULT_FORCE_UPDATE_VERSION
 
 }
