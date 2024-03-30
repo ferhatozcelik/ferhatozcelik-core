@@ -20,7 +20,15 @@ jobs:
           sed -i "s/core=$CURRENT_VERSION/core=$NEW_VERSION/" version.properties
           sed -i "s/firebase=$CURRENT_VERSION/firebase=$NEW_VERSION/" version.properties
           sed -i "s/iot=$CURRENT_VERSION/iot=$NEW_VERSION/" version.properties
-          echo "::set-output name=new_version::$NEW_VERSION"       
+          echo "::set-output name=new_version::$NEW_VERSION"     
+
+      - uses: gradle/gradle-build-action@v3
+      - name: Build with Gradle
+        run: |
+          chmod +x ./gradlew 
+          ./gradlew build  
+
+
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
