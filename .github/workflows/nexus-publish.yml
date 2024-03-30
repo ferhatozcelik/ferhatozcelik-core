@@ -30,9 +30,10 @@ jobs:
       
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-      
       - name: Build
-        run: chmod +x ./gradlew --no-daemon build
+        run: chmod +x ./gradlew 
+      - name: Build
+        run: ./gradlew --no-daemon build
         
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
