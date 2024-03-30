@@ -109,5 +109,4 @@ signing {
         secretProperties.getProperty("signing.secretKeyRingFile") as String,
         secretProperties.getProperty("signing.password") as String,
     )
-    sign(publishing.publications["release"].name)
 }
