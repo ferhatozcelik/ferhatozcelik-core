@@ -25,11 +25,72 @@ https://developer.android.com/guide/playcore/in-app-updates
 
 You can include the Core Library in your project using Gradle.
 
-### Groovy:
-
 ```groovy
 
 implementation 'com.ferhatozcelik:core:1.0.4'
 
 implementation("com.ferhatozcelik:core:1.0.4")
+
+# Firebase Integration for Android
+
+This guide provides instructions on how to integrate Firebase Analytics, Remote Config, and Push Notification features into your Android app.
+
+## Firebase Analytics
+
+Firebase Analytics allows you to track user interactions with your app and provides insights into user behavior. You can track various events such as user actions, screen views, and more.
+
+### Usage:
+
+To send an event analytics:
+
+```kotlin
+Analytics(this).sendEventAnalytics("MainActivity", "onCreate")
+
+Firebase Remote Config
+Firebase Remote Config enables you to dynamically change the behavior and appearance of your app without publishing an app update. You can define parameters and their default values in the Firebase console, and then fetch and activate them in your app.
+
+Usage:
+To fetch a remote config parameter:
+
+val testParam = RemoteConfig.INSTANCE.getRemoteConfig<String>("custom_key")
+
+Firebase Push Notification
+Firebase Push Notification allows you to send notifications to your app users. You can target specific devices or user segments and send personalized notifications.
+
+Usage:
+To initialize push notifications:
+
+FirebaseFCM.instance.initializePushNotification(
+    context,
+    R.drawable.ic_launcher_foreground,
+    listOf(
+        Channel("test", "Test Channel"),
+        Channel("test2", "Test Channel 2")
+    )
+)
+
+To subscribe to a topic:
+
+FirebaseFCM.instance.subscribeToTopic("test")
+
+To remove a topic subscription:
+
+FirebaseFCM.instance.removeFCMTopic("test")
+
+Getting Started:
+Add the Firebase SDK to your project.
+Follow the Firebase documentation to set up Firebase Analytics, Remote Config, and Push Notification services in your project.
+Use the provided code snippets to implement the desired functionality in your app.
+https://firebase.google.com/docs/analytics/get-started?hl=tr&platform=web
+https://firebase.google.com/docs/remote-config?hl=tr
+https://firebase.google.com/docs/cloud-messaging?hl=tr
+
+
+
+
+
+
+
+
+
 
