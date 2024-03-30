@@ -15,7 +15,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "ferhatozcelik-core"
 includeBuild("core-publish")
-includeBuild("ads_publish")
+includeBuild("ads-publish")
 includeBuild("firebase-publish")
 includeBuild("iot-publish")
 include(":app")
