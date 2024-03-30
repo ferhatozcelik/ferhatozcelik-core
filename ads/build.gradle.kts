@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-    id("ads-publish")
+    id("ads_publish")
 }
 
 android {
