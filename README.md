@@ -123,9 +123,10 @@ https://firebase.google.com/docs/analytics/get-started
 https://firebase.google.com/docs/remote-config
 https://firebase.google.com/docs/cloud-messaging
 
+### IOT Library for Android Things
+
 [![IOTl](https://img.shields.io/maven-central/v/com.ferhatozcelik/core.svg)](https://search.maven.org/artifact/com.ferhatozcelik/iot)
 
-### IOT Library for Android Things
 The IOT Library for Android Things provides utilities for managing IOT devices, particularly ESP8266-based devices, in Android Things projects.
 
 # ESP8266 and ESP32 Libraries for Arduino
@@ -140,9 +141,8 @@ This library simplifies the integration of ESP8266-based devices into your Andro
 
 ## Images
 
-![ESP32 Dev Board](https://upload.wikimedia.org/wikipedia/commons/2/20/ESP32_Espressif_ESP-WROOM-32_Dev_Board.jpg)
-![ESP8266 Mounted on Adapter](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/ESP8266_mounted_on_adapter.jpg/330px-ESP8266_mounted_on_adapter.jpg)
-
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/20/ESP32_Espressif_ESP-WROOM-32_Dev_Board.jpg" alt="ESP32 Dev Board" width="500">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/ESP8266_mounted_on_adapter.jpg/330px-ESP8266_mounted_on_adapter.jpg" alt="ESP8266 Mounted on Adapter" width="500">
 
 ### Initialization
 ```kotlin
@@ -205,3 +205,15 @@ private val wifiDataListener = object : WifiDataListener {
     }
 }
 ```
+
+### Author
+👤 Ferhat OZCELIK
+
+Github: @ferhatozcelik
+LinkedIn:https://www.linkedin.com/in/ferhatozcelik/
+Show your support
+Give a ⭐️ if this project helped you!
+
+### License
+Copyright © 2022 Ferhat OZCELIK.
+This project is Apache License, Version 2.0 (the "License") licensed.
