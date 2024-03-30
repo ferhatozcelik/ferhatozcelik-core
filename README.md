@@ -31,6 +31,8 @@ implementation 'com.ferhatozcelik:core:1.0.4'
 
 implementation("com.ferhatozcelik:core:1.0.4")
 
+```
+
 # Firebase Integration for Android
 
 This guide provides instructions on how to integrate Firebase Analytics, Remote Config, and Push Notification features into your Android app.
@@ -46,19 +48,27 @@ To send an event analytics:
 ```kotlin
 Analytics(this).sendEventAnalytics("MainActivity", "onCreate")
 
+```
+
 Firebase Remote Config
 Firebase Remote Config enables you to dynamically change the behavior and appearance of your app without publishing an app update. You can define parameters and their default values in the Firebase console, and then fetch and activate them in your app.
 
 Usage:
 To fetch a remote config parameter:
 
+```kotlin
+
 val testParam = RemoteConfig.INSTANCE.getRemoteConfig<String>("custom_key")
+
+```
 
 Firebase Push Notification
 Firebase Push Notification allows you to send notifications to your app users. You can target specific devices or user segments and send personalized notifications.
 
 Usage:
 To initialize push notifications:
+
+```kotlin
 
 FirebaseFCM.instance.initializePushNotification(
     context,
@@ -69,13 +79,23 @@ FirebaseFCM.instance.initializePushNotification(
     )
 )
 
+```
+
 To subscribe to a topic:
+
+```kotlin
 
 FirebaseFCM.instance.subscribeToTopic("test")
 
+```
+
 To remove a topic subscription:
 
+```kotlin
+
 FirebaseFCM.instance.removeFCMTopic("test")
+
+```
 
 Getting Started:
 Add the Firebase SDK to your project.
