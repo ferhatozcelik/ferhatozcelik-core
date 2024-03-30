@@ -1,5 +1,10 @@
 # Core Library
 
+[![Core](https://img.shields.io/maven-central/v/com.ferhatozcelik/core.svg)](https://search.maven.org/artifact/com.ferhatozcelik/core)
+[![Firebase](https://img.shields.io/maven-central/v/com.ferhatozcelik/core.svg)](https://search.maven.org/artifact/com.ferhatozcelik/firebase)
+[![IOTl](https://img.shields.io/maven-central/v/com.ferhatozcelik/core.svg)](https://search.maven.org/artifact/com.ferhatozcelik/iot)
+
+
 The Core Library provides essential utilities and extensions to simplify Android app development.
 
 ## Features:
@@ -101,9 +106,10 @@ Getting Started:
 Add the Firebase SDK to your project.
 Follow the Firebase documentation to set up Firebase Analytics, Remote Config, and Push Notification services in your project.
 Use the provided code snippets to implement the desired functionality in your app.
-https://firebase.google.com/docs/analytics/get-started?hl=tr&platform=web
-https://firebase.google.com/docs/remote-config?hl=tr
-https://firebase.google.com/docs/cloud-messaging?hl=tr
+
+https://firebase.google.com/docs/analytics/get-started
+https://firebase.google.com/docs/remote-config
+https://firebase.google.com/docs/cloud-messaging
 
 
 
