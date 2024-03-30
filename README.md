@@ -28,10 +28,8 @@ You can include the Core Library in your project using Gradle.
 ### Groovy:
 
 ```groovy
-// https://mvnrepository.com/artifact/com.ferhatozcelik/core
+
 implementation 'com.ferhatozcelik:core:1.0.4'
 
-```kotlin
-// https://mvnrepository.com/artifact/com.ferhatozcelik/core
 implementation("com.ferhatozcelik:core:1.0.4")
 
