@@ -103,5 +103,10 @@ publishing {
 }
 
 signing {
-    sign(publishing.publications["release"])
+    useInMemoryPgpKeys(
+        secretProperties.getProperty("signing.keyId") as String,
+        secretProperties.getProperty("signing.secretKeyRingFile") as String,
+        secretProperties.getProperty("signing.password") as String,
+    )
+    sign(configurations.archives.get())
 }
