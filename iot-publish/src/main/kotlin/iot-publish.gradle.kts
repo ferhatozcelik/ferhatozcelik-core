@@ -8,13 +8,13 @@ plugins {
 
 val isSnapshot = false
 
-val secretPropertiesFile = File(rootProject.projectDir, "secret.properties")
-val secretProperties = Properties()
-if (secretPropertiesFile.exists()) {
-    secretProperties.apply {
-        load(secretPropertiesFile.inputStream())
+val mavenPropertiesFile = File(rootProject.projectDir, "maven.properties")
+val mavenProperties = Properties()
+if (mavenPropertiesFile.exists()) {
+    mavenProperties.apply {
+        load(mavenPropertiesFile.inputStream())
     }
-    System.getProperties().putAll(secretProperties)
+    System.getProperties().putAll(mavenProperties)
 }
 
 val versionPropertiesFile = File(rootProject.projectDir, "version.properties")
@@ -35,18 +35,18 @@ val pomDescription = "IOT library for Android Things"
 val libVersionName = versionProperties.getProperty("iot") as String + if (isSnapshot) snapshotIdentifier else ""
 val artifactName = "iot"
 
-val group = secretProperties.getProperty("GROUP") as String
+val group = mavenProperties.getProperty("GROUP") as String
 
-val projectUrl = secretProperties.getProperty("POM_URL") as String
+val projectUrl = mavenProperties.getProperty("POM_URL") as String
 
-val licenseName = secretProperties.getProperty("LICENCE_NAME") as String
-val licenseUrl = secretProperties.getProperty("LICENCE_URL") as String
+val licenseName = mavenProperties.getProperty("LICENCE_NAME") as String
+val licenseUrl = mavenProperties.getProperty("LICENCE_URL") as String
 
-val developerId = secretProperties.getProperty("DEVELOPER_ID") as String
-val developerName = secretProperties.getProperty("DEVELOPER_NAME") as String
+val developerId = mavenProperties.getProperty("DEVELOPER_ID") as String
+val developerName = mavenProperties.getProperty("DEVELOPER_NAME") as String
 
-val scmConnection = secretProperties.getProperty("SCM_CONNECTION") as String
-val scmDevConnection = secretProperties.getProperty("SCM_DEV_CONNECTION") as String
+val scmConnection = mavenProperties.getProperty("SCM_CONNECTION") as String
+val scmDevConnection = mavenProperties.getProperty("SCM_DEV_CONNECTION") as String
 
 // Load the repository credentials from the secret properties
 val repositoryUsername = System.getenv("MAVEN_CENTRAL_USERNAME") as String

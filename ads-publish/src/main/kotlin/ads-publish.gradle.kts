@@ -8,7 +8,7 @@ plugins {
 
 val isSnapshot = false
 
-val secretPropertiesFile = File(rootProject.projectDir, "secret.properties")
+val secretPropertiesFile = File(rootProject.projectDir, "maven.properties")
 val secretProperties = Properties()
 if (secretPropertiesFile.exists()) {
     secretProperties.apply {
