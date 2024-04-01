@@ -213,7 +213,3 @@ Github: @ferhatozcelik
 LinkedIn:https://www.linkedin.com/in/ferhatozcelik/
 Show your support
 Give a ⭐️ if this project helped you!
-
-### License
-Copyright © 2022 Ferhat OZCELIK.
-This project is Apache License, Version 2.0 (the "License") licensed.
