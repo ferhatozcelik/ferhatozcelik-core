@@ -48,8 +48,9 @@ val developerName = secretProperties.getProperty("DEVELOPER_NAME") as String
 val scmConnection = secretProperties.getProperty("SCM_CONNECTION") as String
 val scmDevConnection = secretProperties.getProperty("SCM_DEV_CONNECTION") as String
 
-val repositoryUsername = secretProperties.getProperty("mavenCentralUsername") as String
-val repositoryPassword = secretProperties.getProperty("mavenCentralPassword") as String
+// Load the repository credentials from the secret properties
+val repositoryUsername = System.getenv("MAVEN_CENTRAL_USERNAME") as String
+val repositoryPassword = System.getenv("MAVEN_CENTRAL_PASSWORD") as String
 
 publishing {
     publications {
@@ -103,10 +104,5 @@ publishing {
 }
 
 signing {
-    useInMemoryPgpKeys(
-        secretProperties.getProperty("signing.keyId") as String,
-        secretProperties.getProperty("signing.secretKeyRingFile") as String,
-        secretProperties.getProperty("signing.password") as String,
-    )
     sign(publishing.publications["release"].name)
 }

@@ -1,47 +1,68 @@
-name: Publish
+name: Publish to Maven Central
 
 on:
-  push:
-    branches: [ "deploy" ]
-    
+  release:
+    types: [ created ]
+
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
+    env:
+      MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+      MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get release title
+        id: release_title
+        run: echo "::set-output name=title::${{ github.event.release.name }}"
+
+      - name: Create version_temp.properties if not exist
+        run: touch version_temp.properties
+
       - name: Update version.properties
         id: update_version
         run: |
-          CURRENT_VERSION=$(grep -oP '(?<=ads=).*' version.properties)
-          MAJOR=$(echo $CURRENT_VERSION | cut -d'.' -f1)
-          MINOR=$(echo $CURRENT_VERSION | cut -d'.' -f2)
-          PATCH=$(echo $CURRENT_VERSION | cut -d'.' -f3)
-          NEW_PATCH=$((PATCH + 1))
-          NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
-          sed -i "s/ads=$CURRENT_VERSION/ads=$NEW_VERSION/" version.properties
-          sed -i "s/core=$CURRENT_VERSION/core=$NEW_VERSION/" version.properties
-          sed -i "s/firebase=$CURRENT_VERSION/firebase=$NEW_VERSION/" version.properties
-          sed -i "s/iot=$CURRENT_VERSION/iot=$NEW_VERSION/" version.properties
-          echo "::set-output name=new_version::$NEW_VERSION"
+          while IFS= read -r line
+          do
+            PROPERTY_NAME=$(echo $line | cut -d'=' -f1)
+            echo "$PROPERTY_NAME=${{ steps.release_title.outputs.title }}" >> version_temp.properties
+          done < version.properties
+          mv version_temp.properties $GITHUB_WORKSPACE/version.properties
+
+      - name: Use version.properties
+        run: |
+          cat $GITHUB_WORKSPACE/version.properties
+          echo "Version: ${{ steps.release_title.outputs.title }}"  
 
       - name: Set up JDK 11
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
-          java-version: '11'
           distribution: 'temurin'
-      - name: Build
-        run: chmod +x ./gradlew 
-      - name: Build
-        run: ./gradlew --no-daemon build
-        
+          java-version: '17'
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: publish
-      - name: Commit version changes
+        run: gradle build
+
+      - name: Publish to GitHub Packages
+        run: gradle publish
+        env:
+          USERNAME: ${{ github.actor }}
+          PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update version.properties
         run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
+          VERSION=$(cat version.properties)
+          NEW_VERSION="${{ steps.release_title.outputs.title }}" # Use release title as new version
+          echo "version=$NEW_VERSION" > version.properties
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add version.properties
-          git commit -m "Bump version to ${{ steps.update_version.outputs.new_version }}"
-          git push
+          git commit -m "Bump version to $NEW_VERSION"
+          git push origin master
